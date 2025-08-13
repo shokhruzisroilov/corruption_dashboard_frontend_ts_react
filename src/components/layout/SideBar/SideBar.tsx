@@ -1,4 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { navItems } from '@/constants/navItems'
+import { SearchInput } from '@/components/ui/search-input'
+import { LogoutIcon } from '@/assets/icons'
 
 const SideBar = () => {
 	const navigate = useNavigate()
@@ -9,77 +12,49 @@ const SideBar = () => {
 	}
 
 	return (
-		<aside className='w-[316px] bg-gray-800 text-white min-h-screen p-4 flex flex-col'>
+		<aside className='w-[316px] bg-[#F7F7F8] min-h-screen flex flex-col p-4 border-r border-[#DEE0E3]'>
 			{/* Logo va nom */}
-			<div className='mb-6 flex items-center space-x-2'>
-				<img
-					src='https://via.placeholder.com/40'
-					alt='Logo'
-					className='w-10 h-10'
-				/>
-				<span className='text-xl font-bold'>Admin Panel</span>
+			<div className='flex items-center'>
+				<span className='font-semibold text-[24px] leading-[32px] tracking-[-0.014em] text-[#14151A]'>
+					Admin Dashboard
+				</span>
 			</div>
 
 			{/* Search input */}
-			<div className='mb-6'>
-				<input
-					type='text'
-					placeholder='Search...'
-					className='w-full p-2 rounded bg-gray-700 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
-				/>
+			<div className='py-3'>
+				<SearchInput placeholder='Qidirish' />
 			</div>
 
 			{/* Navigation links */}
-			<nav className='flex-1 space-y-2 overflow-y-auto'>
-				<Link to='/' className='block hover:bg-gray-700 p-2 rounded'>
-					Dashboard
-				</Link>
-				<Link to='/ministry' className='block hover:bg-gray-700 p-2 rounded'>
-					Ministry
-				</Link>
-				<Link
-					to='/private-departments'
-					className='block hover:bg-gray-700 p-2 rounded'
-				>
-					Private Departments
-				</Link>
-				<Link
-					to='/regional-branches'
-					className='block hover:bg-gray-700 p-2 rounded'
-				>
-					Regional Branches
-				</Link>
-				<Link
-					to='/kindergartens'
-					className='block hover:bg-gray-700 p-2 rounded'
-				>
-					Kindergartens
-				</Link>
-				<Link to='/schools' className='block hover:bg-gray-700 p-2 rounded'>
-					Schools
-				</Link>
-				<Link
-					to='/national-organizations'
-					className='block hover:bg-gray-700 p-2 rounded'
-				>
-					National Organizations
-				</Link>
-				<Link
-					to='/universities'
-					className='block hover:bg-gray-700 p-2 rounded'
-				>
-					Universities
-				</Link>
-				<Link to='/others' className='block hover:bg-gray-700 p-2 rounded'>
-					Others
-				</Link>
+			<nav className='flex-1 space-y-2 overflow-y-auto pt-4'>
+				{navItems.map(item => (
+					<NavLink
+						key={item.path}
+						to={item.path}
+						className={({ isActive }) =>
+							`flex items-center gap-2 p-2 rounded-lg hover:bg-[#0A0F290A] transition-colors font-medium text-sm leading-[20px] tracking-[-0.5%] text-[#14151A] ${
+								isActive ? 'bg-[#0A0F290A] font-semibold' : ''
+							}`
+						}
+					>
+						<img
+							src={item.icon}
+							alt={`${item.label} icon`}
+							className='w-5 h-5'
+						/>
+						{item.label}
+					</NavLink>
+				))}
 			</nav>
 
 			{/* Logout */}
 			<button
 				onClick={handleLogout}
-				className='mt-4 w-full bg-red-600 hover:bg-red-700 p-2 rounded'
+				className='flex items-center gap-2 p-2 rounded-lg hover:bg-[#0A0F290A] transition-colors font-medium text-sm leading-[20px] tracking-[-0.5%] text-[#FF4D4F] mt-4 w-full cursor-pointer'
 			>
+				{LogoutIcon && (
+					<img src={LogoutIcon} alt='Logout icon' className='w-5 h-5' />
+				)}
 				Logout
 			</button>
 		</aside>
