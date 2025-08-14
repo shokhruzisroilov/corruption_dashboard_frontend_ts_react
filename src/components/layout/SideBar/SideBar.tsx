@@ -12,7 +12,7 @@ const SideBar = () => {
 	}
 
 	return (
-		<aside className='w-[316px] bg-[#F7F7F8] min-h-screen flex flex-col p-4 border-r border-[#DEE0E3]'>
+		<aside className='w-[316px] bg-[#F7F7F8] min-h-screen flex flex-col p-4 border-r border-[#DEE0E3] scroll-custom'>
 			{/* Logo va nom */}
 			<div className='flex items-center'>
 				<span className='font-semibold text-[24px] leading-[32px] tracking-[-0.014em] text-[#14151A]'>

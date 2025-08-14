@@ -8,3 +8,11 @@ export { default as NationalOrgIcon } from './national-organizations.svg'
 export { default as UniversityIcon } from './universities.svg'
 export { default as OthersIcon } from './others.svg'
 export { default as LogoutIcon } from './logout-icon.svg'
+
+// Dashboard
+export { default as TodayApplicationsIcon } from './today-applications.svg'
+export { default as TotalApplicationsIcon } from './total-applications.svg'
+export { default as ResolvedApplicationsIcon } from './resolved-applications.svg'
+export { default as InProcessApplicationsIcon } from './in-process-applications.svg'
+export { default as RejectedApplicationsIcon } from './rejected-applications.svg'
+export { default as ListIcon } from './list-icon.svg'

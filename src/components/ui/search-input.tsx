@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Search, X } from 'lucide-react'
-import { Input } from '@/components/ui/input'
 
 interface SearchInputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {}
@@ -9,19 +8,26 @@ export function SearchInput({ ...props }: SearchInputProps) {
 	const [value, setValue] = useState('')
 
 	return (
-		<div className='flex items-center gap-2 bg-white border border-[#DEE0E3] shadow-[0px_1px_2px_0px_#14151A0D] rounded-md px-3 text-gray-700 relative'>
-			<Search size={16} className='text-gray-400' />
-			<Input
+		<div className='relative flex items-center bg-white border border-[#DEE0E3] rounded-md shadow-[0px_1px_2px_0px_#14151A0D]'>
+			{/* Search icon */}
+			<div className='absolute left-3 pointer-events-none'>
+				<Search size={16} className='text-gray-400' />
+			</div>
+
+			<input
 				{...props}
 				value={value}
 				onChange={e => setValue(e.target.value)}
-				className='w-full border-none shadow-none p-0 focus-visible:ring-0 placeholder-gray-400 text-gray-700 selection:bg-primary/20 selection:text-primary font-normal text-sm leading-5 tracking-[-0.5%]'
+				placeholder={props.placeholder || 'Search...'}
+				className='w-full pl-10 pr-10 py-2 text-gray-700 text-sm placeholder-gray-400 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary'
 			/>
+
+			{/* Clear button */}
 			{value && (
 				<button
 					type='button'
 					onClick={() => setValue('')}
-					className='absolute right-3 text-gray-400 hover:text-gray-600 cursor-pointer'
+					className='absolute right-3 text-gray-400 hover:text-gray-600'
 				>
 					<X size={16} />
 				</button>
