@@ -1,11 +1,29 @@
 import { useState } from 'react'
 import { Search, X } from 'lucide-react'
 
-interface SearchInputProps
-	extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+	placeholder?: string
+	value?: string
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
 
-export function SearchInput({ ...props }: SearchInputProps) {
-	const [value, setValue] = useState('')
+export function SearchInput({
+	value,
+	onChange,
+	placeholder,
+	...props
+}: SearchInputProps) {
+	const [internalValue, setInternalValue] = useState('')
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (onChange) {
+			onChange(e)
+		} else {
+			setInternalValue(e.target.value)
+		}
+	}
+
+	const displayValue = value ?? internalValue
 
 	return (
 		<div className='relative flex items-center bg-white border border-[#DEE0E3] rounded-md shadow-[0px_1px_2px_0px_#14151A0D]'>
@@ -16,17 +34,21 @@ export function SearchInput({ ...props }: SearchInputProps) {
 
 			<input
 				{...props}
-				value={value}
-				onChange={e => setValue(e.target.value)}
-				placeholder={props.placeholder || 'Search...'}
-				className='w-full pl-10 pr-10 py-2 text-gray-700 text-sm placeholder-gray-400 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary'
+				value={displayValue}
+				onChange={handleChange}
+				placeholder={placeholder || 'Search...'}
+				className='w-full pl-10 pr-10 py-2 text-gray-700 text-sm placeholder-gray-400 rounded-md focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none'
 			/>
 
 			{/* Clear button */}
-			{value && (
+			{displayValue && (
 				<button
 					type='button'
-					onClick={() => setValue('')}
+					onClick={() =>
+						handleChange({
+							target: { value: '' },
+						} as React.ChangeEvent<HTMLInputElement>)
+					}
 					className='absolute right-3 text-gray-400 hover:text-gray-600'
 				>
 					<X size={16} />

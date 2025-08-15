@@ -1,10 +1,20 @@
 import { Menu } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
+import { navItems } from '@/constants/navItems'
 
 interface HeaderProps {
 	onToggleSidebar: () => void
 }
 
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+	const location = useLocation()
+
+	const isDashboard = location.pathname === '/'
+	const currentNavItem = navItems.find(item => item.path === location.pathname)
+	const pageTitle = isDashboard
+		? 'Analitika'
+		: currentNavItem?.label || 'Sahifa'
+
 	return (
 		<header className='h-[70px] md:h-[94px] bg-white flex items-center justify-between px-4 border-b border-gray-200'>
 			<div className='flex items-center gap-3 md:gap-4'>
@@ -18,11 +28,13 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
 				<div>
 					<h1 className='font-semibold text-lg md:text-2xl leading-6 md:leading-8 text-[#14151A]'>
-						Analitika
+						{pageTitle}
 					</h1>
-					<p className='hidden sm:block text-xs md:text-sm text-[#0F132499]'>
-						Barcha hududlar va ma'lumotlar bo'yicha analitik hisobotlar
-					</p>
+					{isDashboard && (
+						<p className='hidden sm:block text-xs md:text-sm text-[#0F132499]'>
+							Barcha hududlar va ma'lumotlar bo'yicha analitik hisobotlar
+						</p>
+					)}
 				</div>
 			</div>
 

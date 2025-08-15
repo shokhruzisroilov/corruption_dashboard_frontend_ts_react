@@ -15,8 +15,6 @@ export default function Login() {
 		}
 	}
 
-	const isDisabled = !username.trim() || !password.trim()
-
 	return (
 		<div
 			className='w-full min-h-screen flex items-center justify-center bg-cover bg-center px-4 sm:px-6 lg:px-8'
@@ -63,7 +61,6 @@ export default function Login() {
 				<Button
 					type='submit'
 					className='w-full bg-[#12B76A] hover:bg-[#4ac48b] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed'
-					disabled={isDisabled}
 				>
 					Kirish
 				</Button>
