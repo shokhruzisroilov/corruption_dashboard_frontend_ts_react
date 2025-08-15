@@ -7,6 +7,7 @@ import {
 	Title,
 	Tooltip,
 	Legend,
+	type ChartOptions,
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
@@ -90,7 +91,7 @@ const ViolationsChart: React.FC = () => {
 			className='p-4 rounded-[12px] border border-[#E8E8E8] bg-white'
 			style={{ height: '500px' }}
 		>
-			<Bar data={data} options={options} />
+			<Bar data={data} options={options as ChartOptions<'bar'>} />
 		</div>
 	)
 }

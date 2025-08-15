@@ -24,8 +24,8 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 		const root = am5.Root.new(chartRef.current)
 		root.setThemes([am5themes_Animated.new(root)])
 
-		const horizontalLayout = am5.HorizontalLayout.new(root, { gap: 10 })
-		const verticalLayout = am5.VerticalLayout.new(root, { gap: 10 })
+		const horizontalLayout = am5.HorizontalLayout.new(root, { gap: 10 } as any)
+		const verticalLayout = am5.VerticalLayout.new(root, { gap: 10 } as any)
 
 		const container = root.container.children.push(
 			am5.Container.new(root, {
@@ -114,8 +114,7 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 				layout: verticalLayout,
 				paddingTop: 20,
 				paddingBottom: 40,
-				scrollable: true,
-				maxHeight: am5.percent(40),
+				maxHeight: am5.percent(40) as unknown as number,
 			})
 		)
 		legend.data.setAll(series.dataItems)
