@@ -54,13 +54,13 @@ const ApplicationsLineChart = () => {
 	return (
 		<div className='rounded-lg gap-3 p-5 bg-[#F7F7F8] border border-[#0A0F2914] shadow-sm'>
 			<div className='bg-white border border-[#E8E8E8] rounded-[12px] p-6'>
-				<div className='flex flex-col md:flex-row md:items-center md:justify-between border-b border-[#E8E8E8] pb-6 gap-4'>
+				<div className='flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-[#E8E8E8] pb-6 gap-4'>
 					<h3 className='font-semibold text-[20px] text-[#14151A]'>
 						So‘nggi 30 kunda kelgan arizalar
 					</h3>
-					<div className='flex flex-wrap gap-4'>
+					<div className='flex flex-col sm:flex-row sm:flex-wrap gap-4 w-full md:w-auto'>
 						<FilterSelect
-							className='flex-1 min-w-[400px]'
+							className='flex-1 w-full lg:min-w-[400px]'
 							options={[
 								{ label: 'Bugun', value: 'today' },
 								{ label: 'Kecha', value: 'yesterday' },
@@ -71,7 +71,7 @@ const ApplicationsLineChart = () => {
 							value={selectedDay}
 						/>
 						<FilterSelect
-							className='flex-1 min-w-[400px]'
+							className='flex-1 w-full lg:min-w-[400px]'
 							options={[
 								{ label: 'Maktab', value: 'school' },
 								{ label: 'Vazirlik', value: 'ministry' },

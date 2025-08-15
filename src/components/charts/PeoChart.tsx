@@ -24,11 +24,9 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 		const root = am5.Root.new(chartRef.current)
 		root.setThemes([am5themes_Animated.new(root)])
 
-		// Layouts
 		const horizontalLayout = am5.HorizontalLayout.new(root, { gap: 10 })
 		const verticalLayout = am5.VerticalLayout.new(root, { gap: 10 })
 
-		// Main container
 		const container = root.container.children.push(
 			am5.Container.new(root, {
 				width: am5.percent(100),
@@ -37,7 +35,6 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 			})
 		)
 
-		// PieChart
 		const chart = container.children.push(
 			am5percent.PieChart.new(root, {
 				innerRadius: am5.percent(50),
@@ -45,7 +42,6 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 			})
 		)
 
-		// PieSeries
 		const series = chart.series.push(
 			am5percent.PieSeries.new(root, {
 				name: 'Arizalar',
@@ -96,7 +92,7 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 		})
 
 		// Center label
-		series.children.push(
+		const centerLabel = series.children.push(
 			am5.Label.new(root, {
 				text: '{valueSum} ta\nJami arizalar',
 				centerX: am5.percent(50),
@@ -104,34 +100,29 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 				populateText: true,
 				fontSize: 30,
 				fontWeight: '700',
-				fontFamily: 'Roboto',
+				fontFamily: 'Inter',
 				fill: am5.color(0x333333),
 				textAlign: 'center',
 			})
 		)
 
-		// Data
 		series.data.setAll(data)
 
-		// Legend
-		const gridLayout = am5.GridLayout.new(root, {
-			gap: 10,
-			contentAlign: 'left',
-		})
 		const legend = container.children.push(
 			am5.Legend.new(root, {
 				width: am5.percent(100),
 				layout: verticalLayout,
 				paddingTop: 20,
+				paddingBottom: 40,
+				scrollable: true,
+				maxHeight: am5.percent(40),
 			})
 		)
 		legend.data.setAll(series.dataItems)
-
-		// Legend label font
 		legend.labels.template.setAll({
-			fontSize: 20,
+			fontSize: 14,
 			fontWeight: '400',
-			fontFamily: 'Roboto',
+			fontFamily: 'Inter',
 			fill: am5.color(0x333333),
 		})
 
@@ -139,10 +130,12 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 		series.appear(1000, 100)
 		chart.appear(1000, 100)
 
-		// Responsive layout
+		// Responsive layout and font
 		const resize = () => {
 			const w = window.innerWidth
-			if (w >= 1440) {
+
+			// Layout
+			if (w >= 1600) {
 				container.set('layout', horizontalLayout)
 				chart.set('width', am5.percent(70))
 				legend.set('width', am5.percent(30))
@@ -150,6 +143,17 @@ const SchoolPieChart: React.FC<SchoolPieChartProps> = ({ data = [] }) => {
 				container.set('layout', verticalLayout)
 				chart.set('width', am5.percent(100))
 				legend.set('width', am5.percent(100))
+			}
+
+			// Center label font
+			if (w < 640) {
+				centerLabel.set('fontSize', 12)
+			} else if (w < 1024) {
+				centerLabel.set('fontSize', 16)
+			} else if (w < 1600) {
+				centerLabel.set('fontSize', 20)
+			} else {
+				centerLabel.set('fontSize', 24)
 			}
 		}
 

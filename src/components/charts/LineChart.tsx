@@ -83,7 +83,15 @@ const LineChart: React.FC<LineChartProps> = ({
 		}
 	}, [data, categories, tooltipContent])
 
-	return <div ref={chartRef} className='w-full h-[350px] md:h-[400px]' />
+	return (
+		<div className='w-full overflow-x-auto scroll-line'>
+			<div
+				ref={chartRef}
+				className='h-[350px] md:h-[400px]'
+				style={{ minWidth: `${categories.length * 50}px` }}
+			/>
+		</div>
+	)
 }
 
 export default LineChart

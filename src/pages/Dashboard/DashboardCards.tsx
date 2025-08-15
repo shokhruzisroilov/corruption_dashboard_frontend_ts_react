@@ -25,7 +25,7 @@ const StatCard = ({
 	barColor: string
 }) => {
 	return (
-		<div className='min-w-[290px] bg-white rounded-xl p-4 flex flex-col border border-[#DEE0E3] relative'>
+		<div className='bg-white rounded-xl p-4 flex flex-col border border-[#DEE0E3] relative'>
 			{/* Left colored bar */}
 			<div
 				className='w-1 h-[122px] absolute left-0 top-1/2 -translate-y-1/2 rounded-r-xl'
@@ -73,7 +73,7 @@ const DashboardCards = () => {
 	}, [])
 
 	return (
-		<div className='flex max-[1920px]:flex-wrap gap-4  p-5 bg-[#F7F7F8] rounded-lg border border-[#DEE0E3]'>
+		<div className='grid gap-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 p-5 bg-[#F7F7F8] rounded-lg border border-[#DEE0E3]'>
 			{dashboardStatsConfig.map((stat, index) => {
 				const item = statsData[stat.id] || {}
 				return (

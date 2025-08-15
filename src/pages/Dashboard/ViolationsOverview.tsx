@@ -1,19 +1,18 @@
-import React from 'react'
-import UzbekistanMap from '@/components/charts/UzbekistanMap'
+import ViolationsChart from '@/components/charts/ViolationsChart'
 
-const RegionsApplication: React.FC = () => {
+const ViolationsOverview = () => {
 	return (
 		<>
 			<div>
 				<h2 className='font-medium text-[20px] leading-7 tracking-[-1.2%] text-[#14151A] py-4'>
-					Viloyatlar kesimida arizalar
+					Eng ko‘p uchraydigan qonunbuzilish turlari
 				</h2>
 			</div>
 			<div className='rounded-lg gap-3 p-5 bg-[#F7F7F8] border border-[#0A0F2914] shadow-sm'>
-				<UzbekistanMap />
+				<ViolationsChart />
 			</div>
 		</>
 	)
 }
 
-export default RegionsApplication
+export default ViolationsOverview

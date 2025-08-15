@@ -8,33 +8,63 @@
 }
 
 @layer utilities {
+	/* --- Vertikal scroll (Y) --- */
 	.scroll-custom {
-		/* Firefox */
 		scrollbar-width: thin;
-		scrollbar-color: #888 #f1f1f1;
+		scrollbar-color: #c1c1c1 #f7f7f7;
 	}
 
-	/* Chrome, Edge, Safari */
 	.scroll-custom::-webkit-scrollbar {
-		width: 4px;
-		height: 4px;
+		width: 6px; /* biroz qalinroq */
 	}
 
 	.scroll-custom::-webkit-scrollbar-track {
-		background: #f1f1f1;
-	}
-
-	.scroll-custom::-webkit-scrollbar-thumb {
-		background: #888;
+		background: #f7f7f7;
 		border-radius: 9999px;
 	}
 
-	.scroll-custom::-webkit-scrollbar-thumb:hover {
-		background: #555;
+	.scroll-custom::-webkit-scrollbar-thumb {
+		background: linear-gradient(180deg, #c1c1c1, #a0a0a0);
+		border-radius: 9999px;
+		transition: background 0.3s ease;
 	}
 
-	/* Arrow tugmalarni yo'qotish */
+	.scroll-custom::-webkit-scrollbar-thumb:hover {
+		background: linear-gradient(180deg, #a0a0a0, #7a7a7a);
+	}
+
 	.scroll-custom::-webkit-scrollbar-button {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+
+	/* --- Gorizontal scroll (X) --- */
+	.scroll-line {
+		scrollbar-width: thin;
+		scrollbar-color: #c1c1c1 #f7f7f7;
+	}
+
+	.scroll-line::-webkit-scrollbar {
+		height: 12px;
+	}
+
+	.scroll-line::-webkit-scrollbar-track {
+		background: #f7f7f7;
+		border-radius: 9999px;
+	}
+
+	.scroll-line::-webkit-scrollbar-thumb {
+		background: linear-gradient(90deg, #c1c1c1, #a0a0a0);
+		border-radius: 9999px;
+		transition: background 0.3s ease;
+	}
+
+	.scroll-line::-webkit-scrollbar-thumb:hover {
+		background: linear-gradient(90deg, #a0a0a0, #7a7a7a);
+	}
+
+	.scroll-line::-webkit-scrollbar-button {
 		display: none;
 		width: 0;
 		height: 0;

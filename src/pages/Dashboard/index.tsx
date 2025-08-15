@@ -3,6 +3,7 @@ import CategoryPeoChart from './CategoryPeoChart'
 import DashboardCards from './DashboardCards'
 import DashboardFilters from './DashboardFilters'
 import RegionsApplication from './RegionsAplication'
+import ViolationsOverview from './ViolationsOverview'
 
 const Dashboard = () => {
 	return (
@@ -12,6 +13,7 @@ const Dashboard = () => {
 			<CategoryPeoChart />
 			<ApplicationsLIneChart />
 			<RegionsApplication />
+			<ViolationsOverview />
 		</>
 	)
 }
